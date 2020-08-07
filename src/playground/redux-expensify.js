@@ -2,6 +2,8 @@ import { createStore, combineReducers } from 'redux'
 import { v4 as uuidv4 } from 'uuid'
 
 // action generators
+
+// add expense
 const addExpense = (
     {description = '', 
     note = '', 
@@ -18,11 +20,13 @@ const addExpense = (
     }
 })
 
+// remove expense
 const removeExpense = (id) => ({
     type : 'REMOVE_EXPENSE',
     id
 })
 
+// edit expense
 const editExpense = (id, updates) => {
     return {
         type : 'EDIT_EXPENSE',
@@ -31,6 +35,10 @@ const editExpense = (id, updates) => {
     }
 }
 
+
+// FILTER ACTION  GENERATORS
+
+// set text filter
 const setTextFilter = (text = '') => {
     return {
         type : 'SET_TEXT_FILTER',
@@ -38,7 +46,7 @@ const setTextFilter = (text = '') => {
     }
 }
 
-// FILTER REDUCERS
+// set sort by date
 const sortByDate = () => {
     return {
         type : 'SORT_BY_DATE',
@@ -46,6 +54,7 @@ const sortByDate = () => {
     }
 }
 
+// set sort by amount
 const sortByAmount = () => {
     return {
         type : 'SORT_BY_AMOUNT',
@@ -53,6 +62,7 @@ const sortByAmount = () => {
     }
 }
 
+// set start date
 const setStartDate = (startDate) => {
     return {
         type : 'SET_START_DATE',
@@ -60,6 +70,7 @@ const setStartDate = (startDate) => {
     }
 }
 
+// set end date
 const setEndDate = (endDate) => {
     return {
         type: 'SET_END_DATE',
@@ -67,7 +78,7 @@ const setEndDate = (endDate) => {
     }
 }
 
-// initial state parameters
+// initial state of expense
 const expensesReducerDefaultState = []
 
 const filterReducerDefaultState = {
@@ -77,7 +88,7 @@ const filterReducerDefaultState = {
     endDate : undefined
 }
 
-// Reducers 
+// expense reducer
 const expensesReducer = (state = expensesReducerDefaultState, action) => {
     switch(action.type) {
         case 'ADD_EXPENSE':
