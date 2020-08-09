@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import {getVisibleExpenses} from '../selectors/expenses'
+import { getVisibleExpenses } from '../selectors/expenses'
 import ExpenseListItem from './ExpenseListItem'
 
 const ExpenseList = (props) => {
@@ -18,8 +18,10 @@ const ExpenseList = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        expenses : getVisibleExpenses(state.expenses, state.filters)
+        expenses : getVisibleExpenses(state.expenses, state.filters),
     }
 }
 
-export default connect(mapStateToProps)(ExpenseList)  //hoc
+// the export default is a hoc
+// ExpenseList is the wrapped component
+export default connect(mapStateToProps)(ExpenseList)  

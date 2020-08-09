@@ -21,17 +21,14 @@ store.subscribe(() => {
     console.log(result)
 })
 
+// dummy data for initial store setup
 store.dispatch(addExpense({ description : 'water bill', amount : 100, createdAt : 123}))
 store.dispatch(addExpense({ description : 'gas bill', amount : 500, createdAt : 456}))
-store.dispatch(addExpense({ description : 'electric bill', amount : 500, createdAt : 456}))
+store.dispatch(addExpense({ description : 'electric bill', amount : 500, createdAt : 0}))
+store.dispatch(addExpense({ description : 'future', amount : 500, createdAt : 10000}))
 
-// store.dispatch(setTextFilter('bill'))
-
-// setTimeout(() => {
-//     store.dispatch(setTextFilter(''))
-// },3000)
-
-const jsx = (
+// Providing store to react
+const jsx = ( 
     <Provider store={store}>
         <AppRouter />
     </Provider>
