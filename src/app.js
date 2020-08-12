@@ -13,12 +13,12 @@ import './styles/styles.scss'
 const store = configureStore()
 
 store.subscribe(() => {
-    //console.log(store.getState())
-    const state = store.getState()
-    const expenses = state.expenses
-    const filters = state.filters
-    const result = getVisibleExpenses(expenses, filters)
-    console.log(result)
+    console.log(store.getState())
+    // const state = store.getState()
+    // const expenses = state.expenses
+    // const filters = state.filters
+    // const result = getVisibleExpenses(expenses, filters)
+    // console.log(result)
 })
 
 // dummy data for initial store setup

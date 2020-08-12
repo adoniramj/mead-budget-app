@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { removeExpense } from '../actions/expense'
 
 const ExpenseListItem = (props) => {
-    console.log(props)
     const { dispatch, description, amount, createdAt, id } = props
     return (
         <div>
