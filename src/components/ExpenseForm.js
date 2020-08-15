@@ -1,18 +1,19 @@
 import React from 'react'
-
 import moment from 'moment'
 import { SingleDatePicker } from 'react-dates'
 import 'react-dates/lib/css/_datepicker.css'
 
-
 class ExpenseForm extends React.Component {
-  state = {
-    description: '',
-    amount: '',
-    note: '',
-    createdAt: moment(),
-    calendarFocused: false,
-    error : ''
+  constructor(props) {
+    super(props)
+    this.state = {
+      description: props.expense ? props.expense.description : '',
+      amount: props.expense ? (props.expense.amount / 100).toString() : '',
+      note: props.expense ? props.expense.notes : '',
+      createdAt: props.expense ? moment(props.expense.createdAt) : moment(),
+      calendarFocused: false,
+      error: '',
+    }
   }
 
   onDescriptionChange = (e) => {
@@ -35,20 +36,19 @@ class ExpenseForm extends React.Component {
 
   handleOnSubmit = (e) => {
     e.preventDefault()
-    if (!this.state.description || !this.state.amount){
+    if (!this.state.description || !this.state.amount) {
       const error = 'Description and amount a required fields'
-      this.setState(() =>({ error }))
-    }else {
-      this.setState(() => ({ error : ''}))
+      this.setState(() => ({ error }))
+    } else {
+      this.setState(() => ({ error: '' }))
       const data = {
-        description : this.state.description,
-        note : this.state.note,
-        amount : parseFloat(this.state.amount, 10) * 100,
-        createdAt : this.state.createdAt.valueOf()
+        description: this.state.description,
+        note: this.state.note,
+        amount: parseFloat(this.state.amount, 10) * 100,
+        createdAt: this.state.createdAt.valueOf(),
       }
       this.props.onSubmit(data)
     }
-
   }
 
   onDateChange = (createdAt) => {
@@ -58,7 +58,6 @@ class ExpenseForm extends React.Component {
   onFocusChange = ({ focused }) => {
     this.setState(() => ({ calendarFocused: focused }))
   }
-
 
   render() {
     return (
@@ -100,11 +99,10 @@ class ExpenseForm extends React.Component {
           <button onClick={this.handleOnSubmit}>Submit Expense</button>
         </form>
         {this.state.error && <p>{this.state.error}</p>}
+        {this.props.test}
       </div>
     )
   }
 }
-
-
 
 export default ExpenseForm
